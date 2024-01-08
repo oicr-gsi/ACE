@@ -24,19 +24,6 @@ parameter_meta {
   reference: "Name and version of reference genome"
 }
 
-meta {
-  author: "Gavin Peng"
-  email: "gpengv@oicr.on.ca"
-  description: "ACE, workflow for absolute copy number estimation from low-coverage whole-genome sequencing data"
-  dependencies: [
-      {
-        name: "ace/1.20.0",
-        url: "https://github.com/tgac-vumc/ACE"
-      }
-    ]
-
-}
-
 output {
   File SummaryError100k2N = runACE.SummaryError100k2N 
   File SummaryError100k4N = runACE.SummaryError100k4N 
@@ -58,7 +45,40 @@ output {
   File SampleFolder100k4N = runACE.SampleFolder100k2N
   File SampleFolder1000k2N = runACE.SampleFolder1000k2N
   File SampleFolder100044N = runACE.SampleFolder1000k4N
+}
 
+meta {
+  author: "Gavin Peng"
+  email: "gpeng@oicr.on.ca"
+  description: "ACE, workflow for absolute copy number estimation from low-coverage whole-genome sequencing data"
+  dependencies: [
+      {
+        name: "ace/1.20.0",
+        url: "https://github.com/tgac-vumc/ACE"
+      }
+    ]
+  output_meta: {
+  SummaryError100k2N: "Error lists of all the models of 100k binsize and 2N ploidy",
+  SummaryError100k4N: "Error lists of all the models of 100k binsize and 4N ploidy",
+  SummaryLikelyfits100k2N: "Copy number plots of the best fit and the last minimum of each sample, with the corresponding error list plots. For 100k binsize and 2N ploidy",
+  SummaryLikelyfits100k4N: "Copy number plots of the best fit and the last minimum of each sample, with the corresponding error list plots. For 100k binsize and 2N ploidy",
+  SummaryError1000k2N: "Error lists of all the models of 1000k binsize and 2N ploidy",
+  SummaryError1000k4N: "Error lists of all the models of 100k binsize and 4N ploidy",
+  SummaryLikelyfits1000k2N: "Copy number plots of the best fit and the last minimum of each sample, with the corresponding error list plots. For 1000k binsize and 2N ploidy",
+  SummaryLikelyfits1000k4N: "Copy number plots of the best fit and the last minimum of each sample, with the corresponding error list plots. For 1000k binsize and 4N ploidy",
+  Fitpicker100k2N: "Tab-delimited file used during selection of most likely models. For 100k binsize and 2N ploidy",
+  Fitpicker100k4N: "Tab-delimited file used during selection of most likely models. For 100k binsize and 4N ploidy",
+  Fitpicker1000k2N: "Tab-delimited file used during selection of most likely models. For 1000k binsize and 2N ploidy",
+  Fitpicker1000k4N: "Tab-delimited file used during selection of most likely models. For 1000k binsize and 4N ploidy",
+  Likelyfits100k2N: "Zip of subdirectory contains the individual copy number graphs of the likelyfits. For 100k binsize and 2N ploidy",
+  Likelyfits100k4N: "Zip of subdirectory contains the individual copy number graphs of the likelyfits. For 100k binsize and 4N ploidy",
+  Likelyfits1000k2N: "Zip of subdirectory contains the individual copy number graphs of the likelyfits. For 1000k binsize and 2N ploidy",
+  Likelyfits1000k4N: "Zip of subdirectory contains the individual copy number graphs of the likelyfits. For 1000k binsize and 4N ploidy",
+  SampleFolder100k2N: "Zip file of individual sample subdirectories, have a summary file with all the fits for the corresponding sample and the error list plot. Individual copy number graphs are available in the subdirectory 'graphs'. For 100k binsize and 2N ploidy",
+  SampleFolder100k4N: "Zip file of individual sample subdirectories, have a summary file with all the fits for the corresponding sample and the error list plot. Individual copy number graphs are available in the subdirectory 'graphs'. For 100k binsize and 4N ploidy",
+  SampleFolder1000k2N: "Zip file of individual sample subdirectories, have a summary file with all the fits for the corresponding sample and the error list plot. Individual copy number graphs are available in the subdirectory 'graphs'. For 1000k binsize and 2N ploidy",
+  SampleFolder100044N: "Zip file of individual sample subdirectories, have a summary file with all the fits for the corresponding sample and the error list plot. Individual copy number graphs are available in the subdirectory 'graphs'. For 1000k binsize and 4N ploidy"
+  }
 }
 
 }
