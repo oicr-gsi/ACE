@@ -56,9 +56,9 @@ input {
   String aceScript
   String outputFileNamePrefix
   String genome
-  String binsizes = "c(30, 50, 100, 500, 1000)"
+  String binsizes = "c(100, 500, 1000)"
   String ploidies = "c(2,3,4)"
-  String imagetype = "png"
+  String imagetype = "pdf"
   String method = "RMSE"
   String penalty = 0.1
   String trncname = "FALSE"
