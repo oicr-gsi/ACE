@@ -13,7 +13,6 @@ call runACE {
   input: 
   bamFile = inputBamFile,  
   modules = "ace/1.20.0",
-  aceScript = "$ACE_ROOT/share/R/ACE.R",
   genome =  reference,
   outputFileNamePrefix = outputFileNamePrefix
 }
@@ -25,9 +24,7 @@ parameter_meta {
 }
 
 output {
-  File zipFolder100k = runACE.zipFolder100k
-  File zipFolder500k = runACE.zipFolder500k
-  File zipFolder1000k = runACE.zipFolder1000k
+  File resultZip = runACE.resultZip
 }
 
 
@@ -42,9 +39,7 @@ meta {
       }
     ]
   output_meta: {
-  zipFolder100k: "Zipped folder for 100kbp bin size output",
-  zipFolder500k: "Zipped folder for 500kbp bin size output",
-  zipFolder1000k: "Zipped folder for 1000kbp bin size output"
+  resultZip: "Zipped folder for all outputs"
   }
 }
 
@@ -53,7 +48,6 @@ meta {
 task runACE {
 input {
   File bamFile
-  String aceScript
   String outputFileNamePrefix
   String genome
   String binsizes = "c(100, 500, 1000)"
@@ -70,7 +64,6 @@ input {
 
 parameter_meta {
  bamFile: "Input .bam file for analysis sample"
- aceScript: "The R script to run ACE"
  outputFileNamePrefix: "Prefix of output files"
  genome: "the genome version for bam build"
  binsizes: "The vector of disired bin sizes for bam files"
@@ -97,15 +90,11 @@ library(ggplot2)
 file.symlink("~{bamFile}", "./")
 
 
-runACE(inputdir = "./", outputdir = "./", filetype='bam', genome = "~{genome}", binsizes = ~{binsizes}, ploidies = ~{ploidies}, imagetype= "~{imagetype}", method = "~{method}", penalty = ~{penalty}, trncname = ~{trncname}, printsummaries = ~{printsummaries}) 
+runACE(inputdir = "./", outputdir = "./result", filetype='bam', genome = "~{genome}", binsizes = ~{binsizes}, ploidies = ~{ploidies}, imagetype= "~{imagetype}", method = "~{method}", penalty = ~{penalty}, trncname = ~{trncname}, printsummaries = ~{printsummaries}) 
 
 
-files2zip <- dir('./500kbp', full.names = TRUE)
-zip(zipfile = paste('~{outputFileNamePrefix}','500kbp', sep='_'), files = files2zip)
-files2zip <- dir('./100kbp', full.names = TRUE)
-zip(zipfile = paste('~{outputFileNamePrefix}','100kbp', sep='_'), files = files2zip)
-files2zip <- dir('./1000kbp', full.names = TRUE)
-zip(zipfile = paste('~{outputFileNamePrefix}','1000kbp', sep='_'), files = files2zip)
+files2zip <- dir('./result', full.names = TRUE)
+zip(zipfile = paste('~{outputFileNamePrefix}','resultZip', sep='_'), files = files2zip)
 
 CODE
 >>>
@@ -117,8 +106,6 @@ runtime {
 }
 
 output {
-  File zipFolder100k = "~{outputFileNamePrefix}"+"_100kbp.zip"
-  File zipFolder500k = "~{outputFileNamePrefix}"+"_500kbp.zip"
-  File zipFolder1000k = "~{outputFileNamePrefix}"+"_1000kbp.zip"
+  File resultZip = "~{outputFileNamePrefix}"+"_resultZip.zip"
 }
 }
