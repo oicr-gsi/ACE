@@ -1,7 +1,7 @@
 version 1.0
 
 
-workflow ACE {
+workflow ace {
 input {
   File inputBamFile
   String outputFileNamePrefix
@@ -9,7 +9,7 @@ input {
 }
 
 
-call runACE { 
+call runAce { 
   input: 
   bamFile = inputBamFile,  
   modules = "ace/1.20.0",
@@ -24,14 +24,14 @@ parameter_meta {
 }
 
 output {
-  File resultZip = runACE.resultZip
+  File resultZip = runAce.resultZip
 }
 
 
 meta {
   author: "Gavin Peng"
   email: "gpeng@oicr.on.ca"
-  description: "ACE, workflow for absolute copy number estimation from low-coverage whole-genome sequencing data"
+  description: "ace, workflow for absolute copy number estimation from low-coverage whole-genome sequencing data"
   dependencies: [
       {
         name: "ace/1.20.0",
@@ -45,7 +45,7 @@ meta {
 
 }
 
-task runACE {
+task runAce {
 input {
   File bamFile
   String outputFileNamePrefix

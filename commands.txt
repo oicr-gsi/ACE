@@ -1,7 +1,7 @@
 ## Commands
-This section lists command(s) run by ACE workflow
+This section lists command(s) run by ace workflow
 
-* Running ACE
+* Running ace
 
 ```
 R --no-save<<CODE

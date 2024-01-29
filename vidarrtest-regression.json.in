@@ -1,0 +1,42 @@
+[
+    {
+        "arguments": {
+            "ace.runAce.imagetype": "pdf",
+            "ace.inputBamFile": "/.mounts/labs/gsi/testdata/ichorCNA/input_data/TGL48_0001_Ct_T_PE_312_WG_UMB-001-6M-P_INPUT_201130_NB551051_0196_AH3GGWBGXH_1_CTTGTCGA-CGATGTTC.bam",
+            "ace.runAce.penalty": "0.1",
+            "ace.outputFileNamePrefix": "TGL48_0001_Ct_T_PE_312_WG",
+            "ace.reference": "hg38",
+            "ace.runAce.jobMemory": 24,
+            "ace.runAce.ploidies": "c(2,3,4)",
+            "ace.runAce.printsummaries": "TRUE",
+            "ace.runAce.timeout": 8,
+            "ace.runAce.method": "RMSE",
+            "ace.runAce.trncname": "FALSE",
+            "ace.runAce.binsizes": "c(100, 500, 1000)"
+        },
+        "description": "ace workflow test",
+        "engineArguments": {
+           "write_to_cache": false,
+           "read_from_cache": false
+        },
+        "id": "ace_test_with_TGL48",
+        "metadata": {
+            "ace.resultZip": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_ace_test_with_TGL48_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
+                "metrics_compare": "@CHECKOUT@/tests/compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/ace/output_expectation/ace_test_with_TGL48.metrics",
+                "type": "script"
+            }
+        ]
+    }
+]
