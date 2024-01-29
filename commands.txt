@@ -1,39 +1,25 @@
 ## Commands
- This section lists command(s) run by WORKFLOW workflow
- 
- * Running WORKFLOW ACE
+This section lists command(s) run by ace workflow
+
+* Running ace
 
 ```
- R --no-save<<CODE
- library(ACE)
- library(Biobase)
- library(QDNAseq)
- library(QDNAseq.hg38)
- library(QDNAseq.hg19)
- library(ggplot2)
- 
- file.symlink("~{bamFile}", "./")
- fileName = basename("~{bamFile}")
- sampleName = tools::file_path_sans_ext(fileName)
- 
- runACE(inputdir = "./", outputdir = "./", filetype='bam', genome = "~{genome}", binsizes = ~{binsizes}, ploidies = ~{ploidies}, imagetype= "~{imagetype}", method = "~{method}", penalty = ~{penalty}, trncname = ~{trncname}, printsummaries = ~{printsummaries}) 
- 
- files2zip <- dir('100kbp/2N/likelyfits', full.names = TRUE)
- zip(zipfile = '100k2NLikelyfits', files = files2zip)
- files2zip <- dir('100kbp/4N/likelyfits', full.names = TRUE)
- zip(zipfile = '100k4NLikelyfits', files = files2zip)
- files2zip <- dir('1000kbp/2N/likelyfits', full.names = TRUE)
- zip(zipfile = '1000k2NLikelyfits', files = files2zip)
- files2zip <- dir('1000kbp/4N/likelyfits', full.names = TRUE)
- zip(zipfile = '1000k4NLikelyfits', files = files2zip)
- files2zip <- dir(paste('100kbp/2N/', sampleName, sep=''), full.names = TRUE)
- zip(zipfile = '100k2NSampleFolder', files = files2zip)
- files2zip <- dir(paste('100kbp/4N/', sampleName, sep=''), full.names = TRUE)
- zip(zipfile = '100k4NSampleFolder', files = files2zip)
- files2zip <- dir(paste('1000kbp/2N/', sampleName, sep=''), full.names = TRUE)
- zip(zipfile = '1000k2NSampleFolder', files = files2zip)
- files2zip <- dir(paste('1000kbp/4N/', sampleName, sep=''), full.names = TRUE)
- zip(zipfile = '1000k4NSampleFolder', files = files2zip)
- CODE
- >>>
- ```
+R --no-save<<CODE
+library(ACE)
+library(Biobase)
+library(QDNAseq)
+library(QDNAseq.hg38)
+library(QDNAseq.hg19)
+library(ggplot2)
+
+file.symlink("~{bamFile}", "./")
+
+
+runACE(inputdir = "./", outputdir = "./result", filetype='bam', genome = "~{genome}", binsizes = ~{binsizes}, ploidies = ~{ploidies}, imagetype= "~{imagetype}", method = "~{method}", penalty = ~{penalty}, trncname = ~{trncname}, printsummaries = ~{printsummaries}) 
+
+
+files2zip <- dir('./result', full.names = TRUE)
+zip(zipfile = paste('~{outputFileNamePrefix}','resultZip', sep='_'), files = files2zip)
+
+CODE
+```
