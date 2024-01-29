@@ -2,7 +2,18 @@
     {
         "arguments": {
             "ace.runAce.imagetype": "pdf",
-            "ace.inputBamFile": "/.mounts/labs/gsi/testdata/ichorCNA/input_data/TGL48_0001_Ct_T_PE_312_WG_UMB-001-6M-P_INPUT_201130_NB551051_0196_AH3GGWBGXH_1_CTTGTCGA-CGATGTTC.bam",
+            "ace.inputBamFile": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/ichorCNA/input_data/TGL48_0001_Ct_T_PE_312_WG_UMB-001-6M-P_INPUT_201130_NB551051_0196_AH3GGWBGXH_1_CTTGTCGA-CGATGTTC.bam",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
             "ace.runAce.penalty": "0.1",
             "ace.outputFileNamePrefix": "TGL48_0001_Ct_T_PE_312_WG",
             "ace.reference": "hg38",
