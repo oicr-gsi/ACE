@@ -38,9 +38,12 @@ meta {
         url: "https://github.com/tgac-vumc/ACE"
       }
     ]
-  output_meta: {
-  resultZip: "Zipped folder for all outputs"
-  }
+    output_meta: {
+    resultZip: {
+        description: "Zipped folder for all outputs",
+        vidarr_label: "resultZip"
+    }
+}
 }
 
 }

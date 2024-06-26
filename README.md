@@ -47,9 +47,9 @@ Parameter|Value|Default|Description
 
 ### Outputs
 
-Output | Type | Description
----|---|---
-`resultZip`|File|Zipped folder for all outputs
+Output | Type | Description | Labels
+---|---|---|---
+`resultZip`|File|Zipped folder for all outputs|vidarr_label: resultZip
 
 
 ## Commands
